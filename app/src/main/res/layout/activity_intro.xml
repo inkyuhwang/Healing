@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_intro"
+    >
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200px"
+        android:background="@drawable/main_logo"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageView
+        android:id="@+id/logo_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/main_logo"
+        android:background="@drawable/anim_intro_logo"
+        android:layout_centerHorizontal="true"
+        />
+    
+    <EditText
+        android:id="@+id/input_team_name"
+        android:layout_below="@+id/logo_icon"
+        android:layout_marginTop="50dp"
+        android:hint="@string/hint_intro_input_name"
+        style="@style/intro_input"
+        android:paddingStart="30dp"
+        />
+    <EditText
+        android:id="@+id/input_helper_name"
+        android:layout_below="@+id/input_team_name"
+        android:layout_marginTop="10dp"
+        android:hint="@string/hint_intro_input_helper"
+        style="@style/intro_input"
+        />
+    <EditText
+        android:id="@+id/input_helper_tel"
+        android:layout_below="@+id/input_helper_name"
+        android:layout_marginTop="10dp"
+        android:hint="@string/hint_intro_input_helper_tel"
+        style="@style/intro_input"
+        />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_intro_start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        />
+
+
+</RelativeLayout>

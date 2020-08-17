@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Healing</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="hint_intro_input_name">팀명을 입력하세요.</string>
+    <string name="hint_intro_input_helper">힐링헬퍼를 입력하세요.</string>
+    <string name="hint_intro_input_helper_tel">비상연락망을 입력하세요.</string>
+
+    <string name="intro_confirm_dialog_msg">위의 정보를 확인하세요.\n미션을 시작하겠습니까?</string>
+    <string name="intro_confirm_dialog_info_format">팀명 : %s\n힐링헬퍼 : %s\n비상연락망 : %s</string>
+
+    <string name="exit_dialog_msg">하이힐링원 앱을 종료하시겠습니까?</string>
+    <string name="quiz_answer_no_selected">정답을 선택해 주세요!</string>
+    <string name="quiz_answer_no_answered">정답을 입력하세요.</string>
+    <string name="quiz_dialog_confirm_msg">위 정답이 확실합니까?</string>
+    <string name="quiz_dialog_wrong_retry_msg">다시 한 번 정답을 선택해 보세요.</string>
+
+</resources>

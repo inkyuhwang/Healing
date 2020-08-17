@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/intro_toast_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:background="@drawable/toast_intro"
+        android:gravity="center"
+        >
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/intro_toast_bell"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:lottie_fileName="26183-bell-alert.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_marginStart="10dp"
+            android:id="@+id/intro_toast_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+</RelativeLayout>

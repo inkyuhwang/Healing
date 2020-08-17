@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup"
+    >
+
+    <TextView
+        android:id="@+id/intro_confirm_dialog_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_confirm_dialog_info_format"
+        style="@style/popup.textview"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_confirm_dialog_msg"
+        android:layout_centerInParent="true"
+        style="@style/popup.textview"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        >
+        <ImageButton
+            android:id="@+id/intro_confirm_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_no"
+            />
+        <ImageButton
+            android:id="@+id/intro_confirm_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_yes"
+            android:layout_marginStart="60dp"
+            />
+    </LinearLayout>
+</RelativeLayout>
