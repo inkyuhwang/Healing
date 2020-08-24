@@ -1,17 +1,10 @@
-package kr.or.foresthealing.ui
+package kr.or.foresthealing.ui.activity
 
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_intro.*
-import kotlinx.android.synthetic.main.toast_intro.*
 import kr.or.foresthealing.R
 import kr.or.foresthealing.ui.dialog.IntroConfirmDialog
 
@@ -20,7 +13,7 @@ class IntroActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Intent(IntroActivity@this, QuizActivity::class.java).let {
+        Intent(IntroActivity@this, MapActivity::class.java).let {
             startActivity(it)
             finish()
             return

@@ -16,4 +16,6 @@
     <string name="quiz_dialog_confirm_msg">위 정답이 확실합니까?</string>
     <string name="quiz_dialog_wrong_retry_msg">다시 한 번 정답을 선택해 보세요.</string>
 
+    <string name="map_scroll_msg">정답입니다!\n\n아래 지도 속 표시된 장소로 이동하여\nQR 코드로 찍어보세요!</string>
+
 </resources>

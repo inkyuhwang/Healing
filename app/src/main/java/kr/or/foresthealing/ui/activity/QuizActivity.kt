@@ -1,9 +1,7 @@
-package kr.or.foresthealing.ui
+package kr.or.foresthealing.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz.*
 import kr.or.foresthealing.R
 import kr.or.foresthealing.ui.adapter.MChoiceAdapter
@@ -15,7 +13,7 @@ class QuizActivity : BaseActivity(){
     private lateinit var mChoiceAdapter : MChoiceAdapter
 
     companion object{
-        var QUIZ_TYPE = "s"
+        var QUIZ_TYPE = "m"
         const val ANSWER = ""
     }
 

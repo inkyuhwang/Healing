@@ -1,4 +1,4 @@
-package kr.or.foresthealing.ui
+package kr.or.foresthealing.ui.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle

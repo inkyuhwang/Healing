@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_map"
+    >
+    <TextView
+        android:id="@+id/map_scroll_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/map_scroll_paper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="@string/map_scroll_msg"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/map_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/map_layout_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/map_scroll_msg"
+        android:layout_marginTop="40dp"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/map_con1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_fileName="15108-map-con.json"
+        app:lottie_repeatCount="1"
+        app:lottie_loop="true"
+        app:lottie_speed="0.5"
+        app:lottie_autoPlay="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-100dp"
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/map_con2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_fileName="24694-map-con2.json"
+        app:lottie_repeatCount="2"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-300dp"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/map_con3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:lottie_fileName="24997-map-con3.json"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="1"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="-100dp"
+        />
+
+    <ImageButton
+        android:id="@+id/qr_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_qr"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/map_layout"
+        android:layout_marginTop="90dp"
+        />
+
+
+</RelativeLayout>
