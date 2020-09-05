@@ -9,6 +9,8 @@ import android.view.View
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_map.*
 import kr.or.foresthealing.R
+import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.ui.dialog.WrongQRDialog
 
 
 class MapActivity : BaseActivity(){
@@ -20,7 +22,7 @@ class MapActivity : BaseActivity(){
         initAnimation()
 
         qr_btn.setOnClickListener {
-            val qrScan = IntentIntegrator(this).apply {
+            IntentIntegrator(this).apply {
                 setOrientationLocked(true)
                 setBeepEnabled(false)
                 captureActivity = CaptureActivityPortrait::class.java
@@ -52,9 +54,13 @@ class MapActivity : BaseActivity(){
 
         result?.let{
             result.contents?.let {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.setDataAndType(Uri.parse(it), "video/mp4")
-                startActivity(intent)
+
+                if(Uri.parse(it).toString() == Const.SAMPLE_VIDEO){
+                    startActivity(Intent(this, MissionActivity::class.java))
+                    finish()
+                }else{
+                    WrongQRDialog(this).show()
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

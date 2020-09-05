@@ -7,16 +7,12 @@
     >
     <TextView
         android:id="@+id/map_scroll_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:background="@drawable/map_scroll_paper"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:text="@string/map_scroll_msg"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="#000000"
         android:textSize="18sp"
+        style="@style/scroll_text"
         />
 
     <RelativeLayout
@@ -27,7 +23,16 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/map_scroll_msg"
         android:layout_marginTop="40dp"
-        />
+        >
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/map_image_view"
+            android:layout_width="380dp"
+            android:layout_height="320dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map_sample"
+            />
+    </RelativeLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/map_con1"

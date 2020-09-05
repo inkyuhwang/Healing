@@ -1,6 +1,8 @@
 package kr.or.foresthealing.ui.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.Gravity
@@ -11,14 +13,29 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.or.foresthealing.R
+import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.common.ExceptionHandler
+import kr.or.foresthealing.observer.CommonObserver
 import kr.or.foresthealing.ui.dialog.ExitDialog
+import java.util.*
 
-open class BaseActivity : AppCompatActivity(){
+open class BaseActivity : AppCompatActivity(), Observer{
 
-    var toast:Toast? = null
+    private var toast:Toast? = null
+
+    val baseHandler = Handler(Looper.getMainLooper()){
+        when(it.what){
+            Const.FINISH_ACTIVITES->{
+                finish()
+            }
+        }
+        true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        CommonObserver.instance.addObserver(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toast = Toast(this)
         toast?.setGravity(Gravity.CENTER, 0, 390)
@@ -48,5 +65,18 @@ open class BaseActivity : AppCompatActivity(){
     open fun showCustomToast(msg:String){
         toast?.view?.findViewById<TextView>(R.id.intro_toast_text)?.text = msg
         toast?.show()
+    }
+
+    override fun onDestroy() {
+        CommonObserver.instance.deleteObserver(this)
+        super.onDestroy()
+    }
+
+    override fun update(o: Observable?, data: Any?) {
+        when(data){
+            Const.FINISH_ACTIVITES->{
+                finish()
+            }
+        }
     }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup"
+    >
+
+    <TextView
+        android:id="@+id/wrong_qr_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/popup.textview"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="60dp"
+        android:inputType="textMultiLine"
+        android:text="@string/wrong_qr_msg"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        >
+        <ImageButton
+            android:id="@+id/wrong_qr_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_btn_confirm"
+            />
+    </LinearLayout>
+</RelativeLayout>
