@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
 import kr.or.foresthealing.common.ExceptionHandler
+import kr.or.foresthealing.common.LocalStorage
+import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.observer.CommonObserver
 import kr.or.foresthealing.ui.dialog.ExitDialog
 import java.util.*
@@ -22,6 +24,7 @@ import java.util.*
 open class BaseActivity : AppCompatActivity(), Observer{
 
     private var toast:Toast? = null
+    open var mQuiz : Quiz.Data = Quiz.Data()
 
     val baseHandler = Handler(Looper.getMainLooper()){
         when(it.what){
@@ -34,7 +37,6 @@ open class BaseActivity : AppCompatActivity(), Observer{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         CommonObserver.instance.addObserver(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toast = Toast(this)
@@ -45,6 +47,15 @@ open class BaseActivity : AppCompatActivity(), Observer{
         )
         toast?.view = layout
 
+        val quiz = LocalStorage.instance.quiz.data
+        val filterdList = quiz.filter {
+            it.question_id == LocalStorage.instance.currentQuizID
+        }
+        if(filterdList.isNotEmpty()){
+            mQuiz = quiz.filter {
+                it.question_id == LocalStorage.instance.currentQuizID
+            }[0]
+        }
     }
 
     override fun onBackPressed() {

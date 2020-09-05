@@ -4,22 +4,26 @@ import android.animation.Animator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_map.*
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
-import kr.or.foresthealing.ui.dialog.WrongQRDialog
+import kr.or.foresthealing.common.LocalStorage
+import kr.or.foresthealing.ui.dialog.ConfirmDialog
 
 
 class MapActivity : BaseActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_map)
+        LocalStorage.instance.currentStep = Const.STEP_MAP
+
         initAnimation()
+
+        Glide.with(this).load(Const.SERVER + mQuiz.map).into(map_image_view)
 
         qr_btn.setOnClickListener {
             IntentIntegrator(this).apply {
@@ -28,8 +32,8 @@ class MapActivity : BaseActivity(){
                 captureActivity = CaptureActivityPortrait::class.java
                 initiateScan()
             }
-
         }
+
     }
 
     private fun initAnimation(){
@@ -55,11 +59,11 @@ class MapActivity : BaseActivity(){
         result?.let{
             result.contents?.let {
 
-                if(Uri.parse(it).toString() == Const.SAMPLE_VIDEO){
-                    startActivity(Intent(this, MissionActivity::class.java))
+                if(Uri.parse(it).toString() == mQuiz!!.video){
+                    startActivity(Intent(MapActivity@this, MissionActivity::class.java))
                     finish()
                 }else{
-                    WrongQRDialog(this).show()
+                    ConfirmDialog(this, getString(R.string.wrong_qr_msg), null).show()
                 }
             }
         }

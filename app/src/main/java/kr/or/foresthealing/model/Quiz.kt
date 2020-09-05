@@ -13,10 +13,11 @@ class Quiz : BaseModel(){
         var video : String = ""
         var hint : String = ""
         var complete : Boolean = false
+        var certImage : String = ""
 
         var example : Array<Example> = arrayOf()
         override fun toString(): String {
-            return "Data(question_id=$question_id, title='$title', content='$content', type='$type', map='$map', guide='$guide', video='$video', hint='$hint', complete=$complete, example=${example?.contentToString()})"
+            return "Data(question_id=$question_id, title='$title', content='$content', type='$type', map='$map', guide='$guide', video='$video', hint='$hint', complete=$complete, certImage=$certImage, example=${example?.contentToString()})"
         }
     }
 

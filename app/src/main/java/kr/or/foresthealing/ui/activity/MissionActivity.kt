@@ -1,31 +1,18 @@
 package kr.or.foresthealing.ui.activity
 
-import android.animation.Animator
-import android.content.ComponentName
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import androidx.core.content.FileProvider
-import com.google.zxing.integration.android.IntentIntegrator
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpResponseHandler
-import cz.msebera.android.httpclient.Header
-import kotlinx.android.synthetic.main.activity_map.*
 import kotlinx.android.synthetic.main.activity_mission.*
 import kr.or.foresthealing.BuildConfig
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
-import kr.or.foresthealing.ext.parseJsonData
-import kr.or.foresthealing.model.Api
-import kr.or.foresthealing.network.NetworkHandler
-import kr.or.foresthealing.network.NetworkManager
+import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.ui.dialog.PreviewDialog
-import kr.or.foresthealing.ui.dialog.WrongQRDialog
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -39,6 +26,7 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission)
+        LocalStorage.instance.currentStep = Const.STEP_MISSION
 
         btn_play_video.setOnClickListener(this)
         btn_mission_guide.setOnClickListener(this)
@@ -50,7 +38,8 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
         when(view?.id){
             R.id.btn_play_video ->{
                 Intent(Intent.ACTION_VIEW).let {
-                    it.setDataAndType(Uri.parse(Const.SAMPLE_VIDEO), "video/mp4")
+                    val url = Const.SERVER + mQuiz.video
+                    it.setDataAndType(Uri.parse(url), "video/mp4")
                     startActivity(it)
                 }
             }
@@ -89,6 +78,7 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
         }
     }
     private fun showPreviewDialog(){
+        val context = MissionActivity@this
         val prevDialog = PreviewDialog(this, currentPhotoPath)
         prevDialog.setPreviewDialogListener(object:PreviewDialog.PreviewDialogListener{
             override fun reCapture() {
@@ -96,9 +86,25 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
             }
 
             override fun submit() {
-                Log.e("@@@@@", "path : $currentPhotoPath")
-            }
+                mQuiz.certImage = currentPhotoPath
 
+                val raw = LocalStorage.instance.quiz
+                val data = LocalStorage.instance.quiz.data
+                data.forEachIndexed { index, quiz ->
+                    if(quiz.question_id == LocalStorage.instance.currentQuizID){
+                        quiz.certImage = currentPhotoPath
+                        data[index] = quiz
+                        return@forEachIndexed
+                    }
+                }
+                raw.data = data
+                LocalStorage.instance.quiz = raw
+
+                Intent(context, StampActivity::class.java).let {
+                    startActivity(it)
+                    finish()
+                }
+            }
 
         })
         prevDialog.show()

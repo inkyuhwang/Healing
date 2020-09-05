@@ -7,14 +7,13 @@
     >
 
     <TextView
-        android:id="@+id/wrong_qr_text"
+        android:id="@+id/confirm_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/popup.textview"
         android:layout_marginTop="60dp"
         android:layout_marginStart="60dp"
         android:inputType="textMultiLine"
-        android:text="@string/wrong_qr_msg"
         />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -23,7 +22,7 @@
         android:layout_centerHorizontal="true"
         >
         <ImageButton
-            android:id="@+id/wrong_qr_confirm"
+            android:id="@+id/btn_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_btn_confirm"

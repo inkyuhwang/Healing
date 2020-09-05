@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import kotlinx.android.synthetic.main.dialog_permission_deny.*
 
-import kotlinx.android.synthetic.main.dialog_wrong_qr.*
 import kr.or.foresthealing.R
 
 

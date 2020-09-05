@@ -16,6 +16,7 @@ import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
 import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
+import kr.or.foresthealing.common.Utils
 import kr.or.foresthealing.ext.parseJsonData
 import kr.or.foresthealing.model.Api
 import kr.or.foresthealing.model.Quiz
@@ -29,11 +30,15 @@ class IntroActivity : BaseActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //LocalStorage.instance.clear()
         setContentView(R.layout.activity_intro)
         getPermission()
     }
 
     private fun init(){
+
+        checkContinue()
+
         btn_start.setOnClickListener{
 
             input_team_name.setText("테스트팀3")
@@ -54,6 +59,23 @@ class IntroActivity : BaseActivity(){
             }
 
             showStartDialog()
+        }
+    }
+
+    //이전에 종료한 이력이 있어 이어하기를 해야하는 상황인지 확인
+    private fun checkContinue(){
+
+        var intent : Intent? = when(LocalStorage.instance.currentStep){
+            Const.STEP_INTRO -> null
+            Const.STEP_QUIZ -> Intent(IntroActivity@this, QuizActivity::class.java)
+            Const.STEP_MAP -> Intent(IntroActivity@this, MapActivity::class.java)
+            Const.STEP_MISSION -> Intent(IntroActivity@this, MissionActivity::class.java)
+            Const.STEP_STAMP -> Intent(IntroActivity@this, StampActivity::class.java)
+            else -> null
+        }
+        intent?.let {
+            startActivity(it)
+            finish()
         }
     }
 
@@ -101,28 +123,28 @@ class IntroActivity : BaseActivity(){
         })
     }
     private fun requestQuiz(){
-
+        val context = IntroActivity@this
         NetworkManager.getInstance().post(Const.URL_QUIZLIST_ALL, null, object: NetworkHandler {
             override fun onSuccess(result: String) {
                 Hlog.e(result)
 
-                val quiz = result.parseJsonData(Quiz::class.java)
+                val quiz = Utils.replaceUrl(result.parseJsonData(Quiz::class.java))
+                val data = quiz.data.toMutableList().apply { shuffle() }
+                quiz.data = data.toTypedArray()
+
                 LocalStorage.instance.quiz = quiz
-                startQuiz()
+
+                Intent(context, QuizActivity::class.java).let {
+                    startActivity(it)
+                    finish()
+                }
+
             }
 
             override fun onFail(statusCode : Int, result:String) {
                 showNetworkErrorToast(statusCode)
             }
-
         })
-    }
-
-    private fun startQuiz(){
-        Intent(IntroActivity@this, QuizActivity::class.java).let {
-            startActivity(it)
-            finish()
-        }
     }
 
     private fun getApiList(){

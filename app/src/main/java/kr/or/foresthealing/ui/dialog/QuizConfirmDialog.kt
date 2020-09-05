@@ -12,12 +12,13 @@ import android.widget.ImageButton
 import kotlinx.android.synthetic.main.dialog_intro_confirm.*
 import kotlinx.android.synthetic.main.dialog_quiz_confirm.*
 import kr.or.foresthealing.R
+import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.model.Quiz
 
 
 class QuizConfirmDialog(context: Context) : Dialog(context) {
 
-    constructor(context: Context,
-                answer:String):this(context){
+    constructor(context: Context, answer: String):this(context){
         mAnswer = answer
     }
 
@@ -34,7 +35,7 @@ class QuizConfirmDialog(context: Context) : Dialog(context) {
     private var mPositiveListener: View.OnClickListener? = null
     private var mNegativeListener: View.OnClickListener? = null
 
-    private var mAnswer : String? = null
+    private var mAnswer = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

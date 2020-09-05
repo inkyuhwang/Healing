@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         android:layout_margin="50dp"
-        android:src="@drawable/mission_guide_sample"
         />
 
 </RelativeLayout>

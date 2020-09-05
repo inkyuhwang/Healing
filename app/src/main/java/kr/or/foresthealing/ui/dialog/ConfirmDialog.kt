@@ -6,25 +6,25 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-
-import android.widget.Button
-import android.widget.ImageButton
-import kotlinx.android.synthetic.main.dialog_intro_confirm.*
-import kotlinx.android.synthetic.main.dialog_quiz_confirm.*
-import kotlinx.android.synthetic.main.dialog_quiz_wrong_answer.*
-import kotlinx.android.synthetic.main.dialog_wrong_qr.*
+import kotlinx.android.synthetic.main.dialog_confirm.*
 import kr.or.foresthealing.R
 
 
-class WrongQRDialog(context: Context) : Dialog(context) {
+class ConfirmDialog(context: Context, msg:String, clickListener : View.OnClickListener?) : Dialog(context) {
+
+    var mMsg = msg
+    var mListener = clickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        setContentView(R.layout.dialog_wrong_qr)
+        setContentView(R.layout.dialog_confirm)
 
-        wrong_qr_confirm.setOnClickListener{
+        confirm_text.text = mMsg
+
+        btn_confirm.setOnClickListener{
             dismiss()
+            mListener?.onClick(btn_confirm)
         }
     }
 }

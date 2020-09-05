@@ -31,4 +31,6 @@
     <string name="preview_retry">다시 찍기</string>
     <string name="preview_submit">제  출</string>
 
+    <string name="no_exist_quiz">더 이상 풀 문제가 없네요.</string>
+
 </resources>

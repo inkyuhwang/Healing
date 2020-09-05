@@ -19,6 +19,15 @@ class Const {
         //QuizType
         const val QUIZ_TYPE_MULTIPLE = "1"
         const val QUIZ_TYPE_SHORT = "2"
+        const val QUIZ_ANSWER_CORRECT = "1"
+        const val QUIZ_ANSWER_WRONG = "2"
+
+        //Step
+        const val STEP_INTRO = 0
+        const val STEP_QUIZ = 1
+        const val STEP_MAP = 2
+        const val STEP_MISSION = 3
+        const val STEP_STAMP = 4
 
     }
 }

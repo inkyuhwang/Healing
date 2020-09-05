@@ -24,7 +24,7 @@ class LocalStorage {
      * LocalStorage Keys
      */
     private enum class Key {
-        team_id, quiz, current_quiz_id
+        team_id, quiz, current_quiz_id, current_step
     }
 
     /**
@@ -41,12 +41,19 @@ class LocalStorage {
         sharedPreferences = context.getSharedPreferences("LocalStorage", Context.MODE_PRIVATE)
     }
 
+    fun clear(){
+        sharedPreferences.edit().clear().commit()
+    }
     /**
      * 팀 아이디
      */
     var teamID: Int
         get() = sharedPreferences.getInt(Key.team_id.name, -1)
         set(value) = sharedPreferences.edit().putInt(Key.team_id.name, value).apply()
+
+    var currentStep: Int
+        get() = sharedPreferences.getInt(Key.current_step.name, 0)
+        set(value) = sharedPreferences.edit().putInt(Key.current_step.name, value).apply()
 
     var currentQuizID: Int
         get() = sharedPreferences.getInt(Key.current_quiz_id.name, -1)

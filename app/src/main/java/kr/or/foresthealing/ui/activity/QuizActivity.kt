@@ -1,5 +1,6 @@
 package kr.or.foresthealing.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -9,21 +10,18 @@ import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.ui.adapter.MChoiceAdapter
+import kr.or.foresthealing.ui.dialog.ConfirmDialog
 import kr.or.foresthealing.ui.dialog.QuizConfirmDialog
 import kr.or.foresthealing.ui.dialog.QuizWrongAnswerDialog
 
 class QuizActivity : BaseActivity(){
 
     private lateinit var mChoiceAdapter : MChoiceAdapter
-    private var mQuiz : Quiz.Data? = null
-
-    companion object{
-        const val ANSWER = ""
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+        LocalStorage.instance.currentStep = Const.STEP_QUIZ
 
         getCurrentQuiz()
 
@@ -74,8 +72,6 @@ class QuizActivity : BaseActivity(){
         }
     }
 
-
-
     private fun getCurrentQuiz(){
         val quiz = LocalStorage.instance.quiz
         quiz.data?.forEach {
@@ -88,24 +84,54 @@ class QuizActivity : BaseActivity(){
                 return@getCurrentQuiz
             }
         }
+        //더이상 풀 문제가 없을때
+        mQuiz = Quiz.Data()
+        ConfirmDialog(this, getString(R.string.no_exist_quiz), View.OnClickListener {
+            finish()
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }).show()
     }
 
     private fun showAnswerConfirmDialog(answer:Quiz.Example){
 
-        val confirmDialog = QuizConfirmDialog(this, answer.content)
+        var msg = answer.content
+        if(mQuiz!!.type == Const.QUIZ_TYPE_SHORT){
+            msg = edittext_s_answer.text.trim().toString()
+        }
+
+        val confirmDialog = QuizConfirmDialog(this, msg)
+
         confirmDialog.setNegativeListener(View.OnClickListener {
             confirmDialog.dismiss()
         })
         confirmDialog.setPositiveListener(View.OnClickListener {
             confirmDialog.dismiss()
 
-            showWrongAnswerDialog()
+            if(mQuiz!!.type == Const.QUIZ_TYPE_MULTIPLE) {
+                if(answer.isAnswer == Const.QUIZ_ANSWER_CORRECT){
+                    Intent(QuizActivity@this, MapActivity::class.java).let {
+                        startActivity(it)
+                        finish()
+                    }
+                }else{
+                    showWrongAnswerDialog()
+                }
+            }else{
+                if(answer.content.trim() == msg){
+                    Intent(QuizActivity@this, MapActivity::class.java).let {
+                        startActivity(it)
+                        finish()
+                    }
+                }else{
+                    showWrongAnswerDialog()
+                }
+            }
         })
         confirmDialog.show()
     }
 
     private fun showWrongAnswerDialog(){
-        val hint = "[힌트] 지능이 높은 새로도 알려져 있습니다. 무슨 새 일까요?"
+        val hint = "[힌트] " + mQuiz!!.hint
         val wrongAnswerDialog = QuizWrongAnswerDialog(this, hint)
         wrongAnswerDialog.setPositiveListener(View.OnClickListener {
             wrongAnswerDialog.dismiss()
