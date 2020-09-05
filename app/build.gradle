@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
     //loopJ
-    implementation 'com.loopj.android:android-async-http:1.4.11'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
 
     //gson
     implementation 'com.google.code.gson:gson:2.8.6'

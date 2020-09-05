@@ -71,6 +71,9 @@ open class BaseActivity : AppCompatActivity(), Observer{
         CommonObserver.instance.deleteObserver(this)
         super.onDestroy()
     }
+    open fun showNetworkErrorToast(code : Int){
+        Toast.makeText(this@BaseActivity, String.format(getString(R.string.network_error), code), Toast.LENGTH_LONG).show()
+    }
 
     override fun update(o: Observable?, data: Any?) {
         when(data){

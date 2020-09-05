@@ -27,7 +27,7 @@ class ExceptionHandler : Thread.UncaughtExceptionHandler{
                 put("deviceId", Build.MODEL)
             }
 
-            NetworkManager.getInstance().post("/api/exceptions/new", param, object : NetworkHandler {
+            NetworkManager.getInstance().post(Const.URL_EXCEPTION, param, object : NetworkHandler {
                 override fun onSuccess(result: String) {
                     finish(thread, ex)
                 }

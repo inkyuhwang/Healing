@@ -12,7 +12,14 @@
         android:layout_height="wrap_content"
         android:background="@drawable/quiz"
         android:layout_centerHorizontal="true"
-        />
+        >
+        <TextView
+            android:id="@+id/quiz_content"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            style="@style/quiz_content"
+            />
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/m_choice_layout"
         android:layout_width="match_parent"

@@ -1,6 +1,5 @@
 package kr.or.foresthealing.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +7,14 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.or.foresthealing.R
+import kr.or.foresthealing.model.Quiz
 
 class MChoiceAdapter() : RecyclerView.Adapter<MChoiceAdapter.ViewHolder>() {
 
-    lateinit var mDataset:List<String>
+    lateinit var mDataset:Array<Quiz.Example>
     var selectedPos = -1
 
-    constructor(dataset: List<String>) : this() {
+    constructor(dataset: Array<Quiz.Example>) : this() {
         mDataset = dataset
     }
 
@@ -43,8 +43,8 @@ class MChoiceAdapter() : RecyclerView.Adapter<MChoiceAdapter.ViewHolder>() {
 
         viewHolder.itemView.isSelected = selectedPos == position
 
-        val text = mDataset[position]
-        viewHolder.textView.text = text
+        val example = mDataset[position]
+        viewHolder.textView.text = example.content
     }
     override fun getItemCount(): Int {
         return mDataset?.size

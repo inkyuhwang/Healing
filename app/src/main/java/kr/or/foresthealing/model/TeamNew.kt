@@ -4,7 +4,7 @@ class TeamNew : BaseModel(){
     var data : Data? = null
 
     class Data{
-        var id : Int? = null
+        var id : Int = -1
         override fun toString(): String {
             return "Data(id=$id)"
         }
