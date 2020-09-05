@@ -45,6 +45,7 @@
         android:layout_marginTop="10dp"
         android:hint="@string/hint_intro_input_helper_tel"
         style="@style/intro_input"
+        android:inputType="number"
         />
 
     <Button

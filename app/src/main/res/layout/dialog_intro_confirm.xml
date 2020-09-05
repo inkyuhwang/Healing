@@ -26,21 +26,27 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true"
         >
-        <ImageButton
+        <Button
             android:id="@+id/intro_confirm_negative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_btn_no"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_small_btn_blank"
+            android:text="@string/no"
+            android:textColor="#503604"
+            android:fontFamily="@font/hy_wood_b"
             />
-        <ImageButton
+        <Button
             android:id="@+id/intro_confirm_positive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_btn_yes"
-            android:layout_marginStart="60dp"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_small_btn_blank"
+            android:layout_marginStart="50dp"
+            android:text="@string/yes"
+            android:textColor="#503604"
+            android:fontFamily="@font/hy_wood_b"
             />
     </LinearLayout>
 </RelativeLayout>

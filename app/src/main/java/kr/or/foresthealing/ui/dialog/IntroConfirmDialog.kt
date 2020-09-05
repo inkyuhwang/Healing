@@ -31,8 +31,8 @@ class IntroConfirmDialog(context: Context) : Dialog(context) {
         mNegativeListener = negativeListener
     }
 
-    private var mPositiveButton: ImageButton? = null
-    private var mNegativeButton: ImageButton? = null
+    private var mPositiveButton: Button? = null
+    private var mNegativeButton: Button? = null
 
     private var mPositiveListener: View.OnClickListener? = null
     private var mNegativeListener: View.OnClickListener? = null
@@ -47,8 +47,8 @@ class IntroConfirmDialog(context: Context) : Dialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_intro_confirm)
 
-        mPositiveButton = findViewById<ImageButton>(R.id.intro_confirm_positive)
-        mNegativeButton = findViewById<ImageButton>(R.id.intro_confirm_negative)
+        mPositiveButton = findViewById<Button>(R.id.intro_confirm_positive)
+        mNegativeButton = findViewById<Button>(R.id.intro_confirm_negative)
 
         mPositiveButton?.setOnClickListener(mPositiveListener)
         mNegativeButton?.setOnClickListener(mNegativeListener)

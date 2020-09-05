@@ -75,6 +75,7 @@
             android:maxLines="1"
             android:lines="1"
             android:singleLine="true"
+            android:fontFamily="@font/hy_wood_b"
             />
         <ImageView
             android:layout_width="wrap_content"

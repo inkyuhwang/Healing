@@ -24,7 +24,7 @@ class LocalStorage {
      * LocalStorage Keys
      */
     private enum class Key {
-        team_id, quiz, current_quiz_id, current_step
+        team_id, quiz, current_quiz_id, current_step, countdown_flag
     }
 
     /**
@@ -58,6 +58,10 @@ class LocalStorage {
     var currentQuizID: Int
         get() = sharedPreferences.getInt(Key.current_quiz_id.name, -1)
         set(value) = sharedPreferences.edit().putInt(Key.current_quiz_id.name, value).apply()
+
+    var showCountDown: Boolean
+        get() = sharedPreferences.getBoolean(Key.countdown_flag.name, false)
+        set(value) = sharedPreferences.edit().putBoolean(Key.countdown_flag.name, value).apply()
 
 
     var quiz: Quiz

@@ -28,6 +28,7 @@
             android:layout_marginStart="80dp"
             android:text="@string/mission_view_video"
             android:textSize="20sp"
+            android:fontFamily="@font/hy_wood_b"
             android:textColor="@drawable/selector_textcolor_blank_btn"
             android:background="@drawable/selector_btn_blank"/>
 
@@ -39,6 +40,7 @@
             android:text="@string/mission_guide"
             android:layout_marginEnd="80dp"
             android:textSize="20sp"
+            android:fontFamily="@font/hy_wood_b"
             android:textColor="@drawable/selector_textcolor_blank_btn"
             android:background="@drawable/selector_btn_blank"/>
     </RelativeLayout>

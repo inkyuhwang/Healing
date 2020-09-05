@@ -33,6 +33,7 @@ class QuizWrongAnswerDialog(context: Context) : Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setCancelable(false)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_quiz_wrong_answer)
 

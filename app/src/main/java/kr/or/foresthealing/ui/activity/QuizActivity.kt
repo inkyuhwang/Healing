@@ -1,7 +1,11 @@
 package kr.or.foresthealing.ui.activity
 
+import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
 import kotlinx.android.synthetic.main.activity_quiz.*
 import kr.or.foresthealing.R
@@ -11,17 +15,25 @@ import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.ui.adapter.MChoiceAdapter
 import kr.or.foresthealing.ui.dialog.ConfirmDialog
+import kr.or.foresthealing.ui.dialog.CountDownDialog
 import kr.or.foresthealing.ui.dialog.QuizConfirmDialog
 import kr.or.foresthealing.ui.dialog.QuizWrongAnswerDialog
+
 
 class QuizActivity : BaseActivity(){
 
     private lateinit var mChoiceAdapter : MChoiceAdapter
 
+    private var mPlayer : MediaPlayer? = null
+    private var mVibrator : Vibrator? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
         LocalStorage.instance.currentStep = Const.STEP_QUIZ
+
+        mPlayer = MediaPlayer.create(MapActivity@this, R.raw.wrong_answer_sound)
+        mVibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         getCurrentQuiz()
 
@@ -70,6 +82,10 @@ class QuizActivity : BaseActivity(){
                 }
             }
         }
+
+        //꼼수로 오답일경우 강제종료시켜서 들어올 경우 방지
+        if(LocalStorage.instance.showCountDown) CountDownDialog(this).show()
+
     }
 
     private fun getCurrentQuiz(){
@@ -130,11 +146,19 @@ class QuizActivity : BaseActivity(){
         confirmDialog.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPlayer?.release()
+    }
+
     private fun showWrongAnswerDialog(){
+        mVibrator?.vibrate(VibrationEffect.createOneShot(1000, 255))
+        mPlayer?.start()
         val hint = "[힌트] " + mQuiz!!.hint
         val wrongAnswerDialog = QuizWrongAnswerDialog(this, hint)
         wrongAnswerDialog.setPositiveListener(View.OnClickListener {
             wrongAnswerDialog.dismiss()
+            CountDownDialog(this).show()
         })
         wrongAnswerDialog.show()
     }

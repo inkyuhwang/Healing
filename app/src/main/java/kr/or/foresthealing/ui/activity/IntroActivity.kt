@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -23,6 +24,7 @@ import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.model.TeamNew
 import kr.or.foresthealing.network.NetworkHandler
 import kr.or.foresthealing.network.NetworkManager
+import kr.or.foresthealing.ui.dialog.CountDownDialog
 import kr.or.foresthealing.ui.dialog.IntroConfirmDialog
 import kr.or.foresthealing.ui.dialog.PermissionDenyDialog
 
@@ -41,9 +43,9 @@ class IntroActivity : BaseActivity(){
 
         btn_start.setOnClickListener{
 
-            input_team_name.setText("테스트팀3")
+            /*input_team_name.setText("테스트팀3")
             input_helper_name.setText("테스트헬퍼3")
-            input_helper_tel.setText("1234-1234 3")
+            input_helper_tel.setText("1234-1234 3")*/
 
             if(input_team_name.text.trim().isEmpty()) {
                 showCustomToast(getString(R.string.hint_intro_input_name))

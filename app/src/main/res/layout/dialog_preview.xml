@@ -13,7 +13,6 @@
         android:scaleType="fitCenter"
         android:layout_margin="30dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/mission_guide_sample"
         />
 
     <LinearLayout
@@ -29,6 +28,7 @@
             android:background="@drawable/selector_small_btn_blank"
             android:textColor="@drawable/selector_textcolor_blank_btn"
             android:text="@string/preview_retry"
+            android:fontFamily="@font/hy_wood_b"
             />
 
         <Button
@@ -39,6 +39,7 @@
             android:layout_marginStart="100dp"
             android:textColor="@drawable/selector_textcolor_blank_btn"
             android:text="@string/preview_submit"
+            android:fontFamily="@font/hy_wood_b"
             />
     </LinearLayout>
 </RelativeLayout>

@@ -9,6 +9,7 @@ class Const {
         const val FINISH_ACTIVITES = -1
         const val REQUEST_IMAGE_CAPTURE = 1
 
+        const val COUNT_DOWN = 9
 
         //URL
         const val URL_API_LIST = "/api/init"
