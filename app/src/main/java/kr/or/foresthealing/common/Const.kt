@@ -16,6 +16,7 @@ class Const {
         const val URL_EXCEPTION = "/api/exceptions/new"
         const val URL_REGIST_TEAM = "/api/team/new"
         const val URL_QUIZLIST_ALL = "/api/question/listAll"
+        const val URL_FILE_UPLOAD = "/api/screenshot/new"
 
         //QuizType
         const val QUIZ_TYPE_MULTIPLE = "1"

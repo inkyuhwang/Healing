@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,13 +28,22 @@ import kr.or.foresthealing.network.NetworkManager
 import kr.or.foresthealing.ui.dialog.CountDownDialog
 import kr.or.foresthealing.ui.dialog.IntroConfirmDialog
 import kr.or.foresthealing.ui.dialog.PermissionDenyDialog
+import kr.or.foresthealing.ui.dialog.WaitDialog
 
 class IntroActivity : BaseActivity(){
+
+    private var mPlayer : MediaPlayer? = null
+    private var mPlayerSeekPosition = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //LocalStorage.instance.clear()
         setContentView(R.layout.activity_intro)
+
+        mPlayer = MediaPlayer.create(MapActivity@this, R.raw.forest_sound_1)
+        mPlayer?.isLooping = true
+        mPlayer?.start()
+
         getPermission()
     }
 
@@ -43,9 +53,9 @@ class IntroActivity : BaseActivity(){
 
         btn_start.setOnClickListener{
 
-            /*input_team_name.setText("테스트팀3")
+            input_team_name.setText("abc 5")
             input_helper_name.setText("테스트헬퍼3")
-            input_helper_tel.setText("1234-1234 3")*/
+            input_helper_tel.setText("1234-1234 3")
 
             if(input_team_name.text.trim().isEmpty()) {
                 showCustomToast(getString(R.string.hint_intro_input_name))
@@ -195,13 +205,23 @@ class IntroActivity : BaseActivity(){
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPlayer?.stop()
+        mPlayer?.release()
+        (logo_icon.background as AnimationDrawable).stop()
+    }
+
     override fun onResume() {
         super.onResume()
+        mPlayer?.seekTo(mPlayerSeekPosition)
+        mPlayer?.start()
         (logo_icon.background as AnimationDrawable).start()
     }
 
     override fun onPause() {
         super.onPause()
-        (logo_icon.background as AnimationDrawable).stop()
+        mPlayer?.pause()
+        mPlayerSeekPosition = mPlayer?.currentPosition ?: 0
     }
 }

@@ -33,6 +33,7 @@
 
     <string name="no_exist_quiz">더 이상 풀 문제가 없네요.</string>
     <string name="countdown_msg">재도전 가능 시간</string>
+    <string name="upload_fail">사진 제출에 실패했습니다</string>
 
     <string name="yes">예</string>
     <string name="no">아니오</string>

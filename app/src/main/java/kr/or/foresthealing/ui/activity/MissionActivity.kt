@@ -6,13 +6,22 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.loopj.android.http.RequestParams
 import kotlinx.android.synthetic.main.activity_mission.*
 import kr.or.foresthealing.BuildConfig
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
+import kr.or.foresthealing.ext.parseJsonData
+import kr.or.foresthealing.model.Api
+import kr.or.foresthealing.network.NetworkHandler
+import kr.or.foresthealing.network.NetworkManager
+import kr.or.foresthealing.ui.dialog.ConfirmDialog
 import kr.or.foresthealing.ui.dialog.PreviewDialog
+import kr.or.foresthealing.ui.dialog.WaitDialog
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -100,14 +109,40 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
                 raw.data = data
                 LocalStorage.instance.quiz = raw
 
-                Intent(context, StampActivity::class.java).let {
-                    startActivity(it)
-                    finish()
-                }
+                uploadFile()
             }
 
         })
         prevDialog.show()
+    }
+
+    private fun uploadFile(){
+        val waitDialog = WaitDialog(this).apply {
+            show()
+        }
+
+        val context = MissionActivity@this
+        val param = RequestParams().apply {
+            put("file", File(currentPhotoPath))
+            put("team_id", LocalStorage.instance.teamID)
+        }
+        NetworkManager.getInstance().post(Const. URL_FILE_UPLOAD, param, object: NetworkHandler {
+            override fun onSuccess(result: String) {
+                Hlog.e("file upload : $result")
+                Intent(context, StampActivity::class.java).let {
+                    waitDialog.dismiss()
+                    startActivity(it)
+                    finish()
+                }
+
+            }
+
+            override fun onFail(statusCode : Int, result:String) {
+                waitDialog.dismiss()
+                ConfirmDialog(context, getString(R.string.upload_fail), null).show()
+            }
+        })
+
     }
 
     @Throws(IOException::class)
