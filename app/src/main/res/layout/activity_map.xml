@@ -13,6 +13,7 @@
         android:gravity="center"
         android:textSize="18sp"
         style="@style/scroll_text"
+        android:lineSpacingExtra="6sp"
         />
 
     <RelativeLayout
@@ -69,14 +70,19 @@
         android:layout_marginTop="-100dp"
         />
 
-    <ImageButton
+    <Button
         android:id="@+id/qr_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_qr"
+        android:background="@drawable/selector_logo_large_blank_btn"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/map_layout"
         android:layout_marginTop="90dp"
+        android:text="@string/qr_btn"
+        android:textStyle="bold"
+        android:fontFamily="@font/poor"
+        android:textSize="30sp"
+        android:textColor="@drawable/selector_textcolor_default_btn"
         />
 
 

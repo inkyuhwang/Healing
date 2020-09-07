@@ -3,33 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_popup"
+    android:background="@drawable/blank_paper"
     >
 
     <TextView
         android:id="@+id/permission_deny_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
         android:inputType="textMultiLine"
         android:text="@string/permission_deny_msg"
-        android:lineSpacingExtra="10dp"
-        android:textSize="12sp"
+        android:lineSpacingExtra="18dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#ff0000"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poor"
+
         />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="190dp"
         android:layout_centerHorizontal="true"
         >
-        <ImageButton
+        <Button
             android:id="@+id/permission_deny_confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_btn_confirm"
+            android:layout_width="250dp"
+            android:layout_height="44dp"
+            android:background="@drawable/selector_logo_large_blank_btn"
+            android:text="@string/confirm_large"
+            style="@style/popup.blank.large.text"
             />
     </LinearLayout>
 </RelativeLayout>

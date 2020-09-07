@@ -42,14 +42,17 @@ class QuizActivity : BaseActivity(){
             init()
 
         }else{
-            //비정상일 경우 처리
-
+            val msg = getString(R.string.quiz_empty_error)
+            showNetworkErrorDialog(msg, View.OnClickListener {
+                finish()
+                android.os.Process.killProcess(android.os.Process.myPid())
+            })
         }
     }
 
     private fun init(){
 
-        Hlog.e("quiz type : ${mQuiz!!.type}, ${mQuiz!!.type == Const.QUIZ_TYPE_MULTIPLE}")
+        Hlog.i("quiz type : ${mQuiz!!.type}, ${mQuiz!!.type == Const.QUIZ_TYPE_MULTIPLE}")
 
         //문제 텍스트 출력
         quiz_content.text = mQuiz!!.content
@@ -93,7 +96,6 @@ class QuizActivity : BaseActivity(){
         quiz.data?.forEach {
             if(!it.complete){
                 mQuiz = it
-                Hlog.e("get quiz : ${mQuiz.toString()}")
                 mQuiz?.let {quiz ->
                     LocalStorage.instance.currentQuizID = quiz.question_id
                 }

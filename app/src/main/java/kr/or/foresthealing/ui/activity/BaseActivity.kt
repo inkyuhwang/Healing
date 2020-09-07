@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.PersistableBundle
+import android.os.Process
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -18,6 +19,7 @@ import kr.or.foresthealing.common.ExceptionHandler
 import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.observer.CommonObserver
+import kr.or.foresthealing.ui.dialog.ConfirmDialog
 import kr.or.foresthealing.ui.dialog.ExitDialog
 import java.util.*
 
@@ -82,8 +84,11 @@ open class BaseActivity : AppCompatActivity(), Observer{
         CommonObserver.instance.deleteObserver(this)
         super.onDestroy()
     }
-    open fun showNetworkErrorToast(code : Int){
-        Toast.makeText(this@BaseActivity, String.format(getString(R.string.network_error), code), Toast.LENGTH_LONG).show()
+
+    open fun showNetworkErrorDialog(msg:String, listener:View.OnClickListener?){
+        val dialog = ConfirmDialog(this, msg, listener)
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
     override fun update(o: Observable?, data: Any?) {

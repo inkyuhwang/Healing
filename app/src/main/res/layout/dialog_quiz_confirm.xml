@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_popup"
+    android:background="@drawable/blank_paper"
     >
 
     <TextView
@@ -11,8 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/popup.textview"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginTop="70dp"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_red_dark"
         />
 
     <TextView
@@ -25,21 +27,25 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="180dp"
         android:layout_centerHorizontal="true"
         >
-        <ImageButton
+        <Button
             android:id="@+id/quiz_confirm_negative"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_quiz_confirm_no"
+            android:background="@drawable/selector_normal_btn_blank"
+            android:text="@string/quiz_dialog_submit_no"
+            style="@style/popup.blank.btn"
             />
-        <ImageButton
+        <Button
             android:id="@+id/quiz_confirm_positive"
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_quiz_confirm_yes"
+            android:background="@drawable/selector_normal_btn_blank"
             android:layout_marginStart="20dp"
+            style="@style/popup.blank.btn"
+            android:text="@string/quiz_dialog_submit_yes"
             />
     </LinearLayout>
 </RelativeLayout>

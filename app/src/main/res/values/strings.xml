@@ -7,24 +7,31 @@
     <string name="hint_intro_input_helper">힐링헬퍼를 입력하세요.</string>
     <string name="hint_intro_input_helper_tel">비상연락망을 입력하세요.</string>
 
+    <string name="intro_mission_start">미션 START</string>
     <string name="intro_confirm_dialog_msg">위의 정보를 확인하세요.\n미션을 시작하겠습니까?</string>
     <string name="intro_confirm_dialog_info_format">팀명 : %s\n힐링헬퍼 : %s\n비상연락망 : %s</string>
 
     <string name="exit_dialog_msg">하이힐링원 앱을 종료하시겠습니까?</string>
     <string name="quiz_answer_no_selected">정답을 선택해 주세요!</string>
     <string name="quiz_answer_no_answered">정답을 입력하세요.</string>
-    <string name="quiz_dialog_confirm_msg">위 정답이 확실합니까?</string>
+    <string name="quiz_dialog_confirm_msg">위 답이 확실합니까?</string>
     <string name="quiz_dialog_wrong_retry_msg">다시 한 번 정답을 선택해 보세요.</string>
+    <string name="quiz_submit">정 답 확 인</string>
+    <string name="quiz_dialog_submit_no">다시 생각해 볼게요!</string>
+    <string name="quiz_dialog_submit_yes">네! 확실해요!</string>
+
 
     <string name="map_scroll_msg">정답입니다!\n\n아래 지도 속 표시된 장소로 이동하여\nQR 코드로 찍어보세요!</string>
+    <string name="qr_btn">QR 코드 찍기</string>
 
     <string name="wrong_qr_msg">앗! 여기가 아니에요!!\n\n다른 QR 코드를 찾아보세요</string>
 
     <string name="mission_scroll_msg">잘 찾아오셨습니다.\n다음 순서에 따라 미션을 수행하세요.\n\n1) 영상보기 → 미션확인\n2) 미션 가이드 → 방법 확인 후 미션 시작\n3) 인증샷 찍기 → 미션 종료 후 사진 촬영</string>
     <string name="mission_view_video">영상 보기</string>
     <string name="mission_guide">미션 가이드</string>
+    <string name="mission_sc_btn">인증샷 찍기</string>
 
-    <string name="network_error">서버와 통신 중 에러가 발생하였습니다. 잠시뒤에 다시 시도해 보세요 : $d</string>
+    <string name="network_error">서버와 통신 중 에러가 발생하였습니다.\n잠시뒤에 다시 시도해 보세요 : </string>
 
     <string name="permission_deny_msg">기기의 접근 권한을 거부하실경우\n하이힐링원 앱을 사용하실 수 없습니다.</string>
 
@@ -37,5 +44,12 @@
 
     <string name="yes">예</string>
     <string name="no">아니오</string>
+    <string name="retry">재도전</string>
+    <string name="confirm">확인</string>
+
+    <string name="confirm_large">확&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;인</string>
+
+    <string name="quiz_empty_error">데이터로드 오류가 발생하였습니다.\n관리자에게 문의 바랍니다.</string>
 
 </resources>
+

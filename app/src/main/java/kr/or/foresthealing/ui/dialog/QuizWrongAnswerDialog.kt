@@ -26,7 +26,7 @@ class QuizWrongAnswerDialog(context: Context) : Dialog(context) {
         mPositiveListener = positiveListener
     }
 
-    private var mPositiveButton: ImageButton? = null
+    private var mPositiveButton: Button? = null
     private var mPositiveListener: View.OnClickListener? = null
 
     private var mHint : String? = null
@@ -37,7 +37,7 @@ class QuizWrongAnswerDialog(context: Context) : Dialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_quiz_wrong_answer)
 
-        mPositiveButton = findViewById<ImageButton>(R.id.quiz_wrong_answer_retry_btn)
+        mPositiveButton = findViewById<Button>(R.id.quiz_wrong_answer_retry_btn)
         mPositiveButton?.setOnClickListener(mPositiveListener)
 
         quiz_wrong_dialog_info.text = mHint

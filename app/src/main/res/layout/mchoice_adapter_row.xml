@@ -37,7 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#000000"
-            android:fontFamily="@font/hy_wood_b"
+            android:fontFamily="@font/poor"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </RelativeLayout>
 

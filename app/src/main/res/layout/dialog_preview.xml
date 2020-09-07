@@ -21,25 +21,25 @@
         android:layout_below="@+id/prev_image_view"
         android:layout_centerHorizontal="true"
         >
+
         <Button
             android:id="@+id/prev_recapture_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_small_btn_blank"
-            android:textColor="@drawable/selector_textcolor_blank_btn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_normal_btn_blank"
             android:text="@string/preview_retry"
-            android:fontFamily="@font/hy_wood_b"
+            style="@style/popup.blank.btn"
             />
 
         <Button
             android:id="@+id/prev_submit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_small_btn_blank"
-            android:layout_marginStart="100dp"
-            android:textColor="@drawable/selector_textcolor_blank_btn"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_normal_btn_blank"
             android:text="@string/preview_submit"
-            android:fontFamily="@font/hy_wood_b"
+            android:layout_marginStart="80dp"
+            style="@style/popup.blank.btn"
             />
+
     </LinearLayout>
 </RelativeLayout>

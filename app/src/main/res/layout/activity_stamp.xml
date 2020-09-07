@@ -21,14 +21,16 @@
         android:fastScrollEnabled="true"
         android:numColumns="3" />
 
-    <ImageButton
+    <Button
         android:id="@+id/stamp_confirm_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_btn_stamp_confirm"
+        android:background="@drawable/selector_logo_large_blank_btn"
+        android:text="@string/confirm_large"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
+        style="@style/popup.blank.xlarge.text"
         />
 
 </RelativeLayout>

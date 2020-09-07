@@ -128,7 +128,7 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
         }
         NetworkManager.getInstance().post(Const. URL_FILE_UPLOAD, param, object: NetworkHandler {
             override fun onSuccess(result: String) {
-                Hlog.e("file upload : $result")
+                Hlog.i("file upload : $result")
                 Intent(context, StampActivity::class.java).let {
                     waitDialog.dismiss()
                     startActivity(it)
@@ -139,7 +139,11 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
 
             override fun onFail(statusCode : Int, result:String) {
                 waitDialog.dismiss()
-                ConfirmDialog(context, getString(R.string.upload_fail), null).show()
+                val msg = getString(R.string.network_error) + statusCode
+                showNetworkErrorDialog(msg, View.OnClickListener {
+                    finish()
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                })
             }
         })
 

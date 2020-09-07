@@ -15,6 +15,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_map.*
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.ui.dialog.ConfirmDialog
 

@@ -75,7 +75,8 @@
             android:maxLines="1"
             android:lines="1"
             android:singleLine="true"
-            android:fontFamily="@font/hy_wood_b"
+            android:textStyle="bold"
+            android:fontFamily="@font/poor"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -87,13 +88,10 @@
             android:layout_marginTop="-1dp"
             />
 
-
-
-
     </RelativeLayout>
 
 
-    <ImageButton
+    <Button
         android:id="@+id/quiz_btn_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,6 +99,11 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
+        android:text="@string/quiz_submit"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poor"
+        android:textColor="@drawable/selector_textcolor_default_btn"
         />
 
 

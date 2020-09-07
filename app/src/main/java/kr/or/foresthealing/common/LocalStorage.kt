@@ -24,7 +24,7 @@ class LocalStorage {
      * LocalStorage Keys
      */
     private enum class Key {
-        team_id, quiz, current_quiz_id, current_step, countdown_flag
+        team_id, quiz, current_quiz_id, current_step, countdown_flag,
     }
 
     /**
@@ -63,6 +63,14 @@ class LocalStorage {
         get() = sharedPreferences.getBoolean(Key.countdown_flag.name, false)
         set(value) = sharedPreferences.edit().putBoolean(Key.countdown_flag.name, value).apply()
 
+    var quizExist: Boolean = true
+        get() {
+            if(quiz.data.isEmpty())
+                return false
+
+            return true
+        }
+
 
     var quiz: Quiz
         get() {
@@ -74,6 +82,4 @@ class LocalStorage {
             val data = Gson().toJson(value)
             sharedPreferences.edit().putString(Key.quiz.name, data).apply()
         }
-
-
 }

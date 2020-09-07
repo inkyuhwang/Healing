@@ -22,8 +22,8 @@ class ExitDialog(context: Context) : Dialog(context) {
         mNegativeListener = negativeListener
     }
 
-    private var mPositiveButton: ImageButton? = null
-    private var mNegativeButton: ImageButton? = null
+    private var mPositiveButton: Button? = null
+    private var mNegativeButton: Button? = null
 
     private var mPositiveListener: View.OnClickListener? = null
     private var mNegativeListener: View.OnClickListener? = null
@@ -33,8 +33,8 @@ class ExitDialog(context: Context) : Dialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.dialog_exit)
 
-        mPositiveButton = findViewById<ImageButton>(R.id.exit_confirm_positive)
-        mNegativeButton = findViewById<ImageButton>(R.id.exit_confirm_negative)
+        mPositiveButton = findViewById<Button>(R.id.exit_confirm_positive)
+        mNegativeButton = findViewById<Button>(R.id.exit_confirm_negative)
 
         mPositiveButton?.setOnClickListener(mPositiveListener)
         mNegativeButton?.setOnClickListener(mNegativeListener)
