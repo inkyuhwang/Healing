@@ -38,10 +38,6 @@ class IntroActivity : BaseActivity(){
     private fun init(){
         btn_start.setOnClickListener{
 
-            input_team_name.setText("abc 5")
-            input_helper_name.setText("테스트헬퍼3")
-            input_helper_tel.setText("1234-1234 3")
-
             if(input_team_name.text.trim().isEmpty()) {
                 showCustomToast(getString(R.string.hint_intro_input_name))
                 return@setOnClickListener
