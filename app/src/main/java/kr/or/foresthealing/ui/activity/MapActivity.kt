@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_map.*
@@ -18,6 +19,7 @@ import kr.or.foresthealing.common.Const
 import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
 import kr.or.foresthealing.ui.dialog.ConfirmDialog
+import kr.or.foresthealing.ui.view.CircleProgress
 
 
 class MapActivity : BaseActivity(){
@@ -36,7 +38,9 @@ class MapActivity : BaseActivity(){
 
         mVibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-        Glide.with(this).load(Const.SERVER + mQuiz.map).into(map_image_view)
+        Glide.with(this).load(Const.SERVER + mQuiz.map)
+            .placeholder(CircleProgress(this))
+            .into(map_image_view)
 
         qr_btn.setOnClickListener {
             IntentIntegrator(this).apply {

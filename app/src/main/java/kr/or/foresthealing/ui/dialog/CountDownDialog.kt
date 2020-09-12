@@ -29,7 +29,7 @@ class CountDownDialog(context: Context) : Dialog(context) {
         true
     }
 
-    var remainTime = 20
+    private var remainTime = 30
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class CountDownDialog(context: Context) : Dialog(context) {
 
     override fun show() {
         LocalStorage.instance.showCountDown = true
-        remainTime = 20
+        remainTime = 30
         super.show()
         mHandler.postDelayed(Runnable {countdown()}, 1000)
 
