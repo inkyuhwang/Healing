@@ -43,14 +43,7 @@ class SplashActivity : BaseActivity(){
 
     private fun init(){
 
-        //퀴즈 데이터가 비어있는경우에만 퀴즈 데이터를 받아온다.
-        //이미 퀴즈를 받아온게 있으면 이어하기 체크하는 로직으로 넘김
-        if(LocalStorage.instance.quizExist){
-            checkLastStep()
-        }else{
-            // 퀴즈 데이터를 받아온다.
-            requestQuiz()
-        }
+        checkLastStep()
     }
 
     private fun checkLastStep(){
@@ -68,33 +61,6 @@ class SplashActivity : BaseActivity(){
             finish()
         }
     }
-
-
-    private fun requestQuiz(){
-        NetworkManager.getInstance().post(Const.URL_QUIZLIST_ALL, null, object : NetworkHandler {
-            override fun onSuccess(result: String) {
-                Hlog.i(result)
-
-                val quiz = Utils.replaceUrl(result.parseJsonData(Quiz::class.java))
-                val data = quiz.data.toMutableList().apply { shuffle() }
-                quiz.data = data.toTypedArray()
-
-                LocalStorage.instance.quiz = quiz
-
-                //퀴즈 데이터 받아오는데 성공했을경우에만
-                checkLastStep()
-            }
-
-            override fun onFail(statusCode: Int, result: String) {
-                val msg = getString(R.string.network_error) + statusCode
-                showNetworkErrorDialog(msg, View.OnClickListener {
-                    finish()
-                    android.os.Process.killProcess(android.os.Process.myPid())
-                })
-            }
-        })
-    }
-
 
     private fun getPermission(){
         if(checkPermission()){

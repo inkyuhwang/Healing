@@ -10,9 +10,12 @@ import com.loopj.android.http.RequestParams
 import kotlinx.android.synthetic.main.activity_intro.*
 import kr.or.foresthealing.R
 import kr.or.foresthealing.common.Const
+import kr.or.foresthealing.common.Hlog
 import kr.or.foresthealing.common.LocalStorage
+import kr.or.foresthealing.common.Utils
 import kr.or.foresthealing.ext.parseJsonData
 import kr.or.foresthealing.model.Api
+import kr.or.foresthealing.model.Quiz
 import kr.or.foresthealing.model.TeamNew
 import kr.or.foresthealing.network.NetworkHandler
 import kr.or.foresthealing.network.NetworkManager
@@ -36,6 +39,8 @@ class IntroActivity : BaseActivity(){
     }
 
     private fun init(){
+        requestQuiz()
+
         btn_start.setOnClickListener{
 
             if(input_team_name.text.trim().isEmpty()) {
@@ -53,6 +58,30 @@ class IntroActivity : BaseActivity(){
 
             showStartDialog()
         }
+    }
+
+
+    private fun requestQuiz(){
+        NetworkManager.getInstance().post(Const.URL_QUIZLIST_ALL, null, object : NetworkHandler {
+            override fun onSuccess(result: String) {
+                Hlog.i(result)
+
+                val quiz = Utils.replaceUrl(result.parseJsonData(Quiz::class.java))
+                val data = quiz.data.toMutableList().apply { shuffle() }
+                quiz.data = data.toTypedArray()
+
+                LocalStorage.instance.quiz = quiz
+
+            }
+
+            override fun onFail(statusCode: Int, result: String) {
+                val msg = getString(R.string.network_error) + statusCode
+                showNetworkErrorDialog(msg, View.OnClickListener {
+                    finish()
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                })
+            }
+        })
     }
 
     private fun showStartDialog(){
@@ -87,6 +116,7 @@ class IntroActivity : BaseActivity(){
                 if(LocalStorage.instance.teamID != -1){
                     //팀 데이터를 받아오면 퀴즈 엑티비티로 보냄
                     startActivity(Intent(context, QuizActivity::class.java))
+                    finish()
                 }else{
                     val msg = getString(R.string.network_error) + "TeamID = ${LocalStorage.instance.teamID}"
                     showNetworkErrorDialog(msg, View.OnClickListener {

@@ -8,11 +8,11 @@
 
     <TextView
         android:id="@+id/quiz_confirm_dialog_info"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         style="@style/popup.textview"
         android:layout_marginTop="70dp"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/holo_red_dark"
         />

@@ -3,6 +3,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+
+    ext {
+        version_release = 1
+        version_major = 0
+        version_minor = 0
+        version_code = 1
+        release_version_name = "${version_release}.${version_major}.${version_minor}"
+    }
+    flavorDimensions "default"
+
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
@@ -10,10 +20,17 @@ android {
         applicationId "kr.or.foresthealing"
         minSdkVersion 28
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def version = "${variant.versionName}(${variant.versionCode})"
+            def dateTimeFormat = new Date().format('yyMMdd')
+            def flavor = "${variant.getFlavorName()}"
+            def buildType = "${variant.buildType.name}"
+            outputFileName = "ForestHealing_${version}_${dateTimeFormat}_${flavor}_${buildType}.apk"
+        }
     }
 
     buildTypes {
@@ -22,6 +39,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        inhouse {
+            versionName "${release_version_name}"
+            versionCode = version_code
+        }
+    }
+
 }
 
 dependencies {
