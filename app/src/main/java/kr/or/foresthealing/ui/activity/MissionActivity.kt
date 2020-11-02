@@ -32,6 +32,9 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
 
     lateinit var currentPhotoPath: String
 
+    var mIsVideoClicked = false
+    var mIsGuideClicked = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mission)
@@ -51,12 +54,27 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
                     it.setDataAndType(Uri.parse(url), "video/mp4")
                     startActivity(it)
                 }
+                mIsVideoClicked = true
             }
             R.id.btn_mission_guide ->{
-                startActivity(Intent(MissionActivity@this, MissionGuideActivity::class.java))
+                /**
+                 * 비디오 시청을 먼저 해야 미션 가이드를 볼 수 있다.
+                 */
+                if(!mIsVideoClicked){
+                    showCommonDialog(getString(R.string.mission_dialog_need_show_video), null)
+                }else{
+                    startActivity(Intent(MissionActivity@this, MissionGuideActivity::class.java))
+                    mIsGuideClicked = true
+                }
             }
             R.id.btn_sc ->{
-                startCamera()
+                if(!mIsVideoClicked){
+                    showCommonDialog(getString(R.string.mission_dialog_need_show_video), null)
+                }else if(!mIsGuideClicked){
+                    showCommonDialog(getString(R.string.mission_dialog_need_show_guide), null)
+                }else{
+                    startCamera()
+                }
             }
         }
     }
@@ -146,8 +164,8 @@ class MissionActivity : BaseActivity(), View.OnClickListener{
                 })
             }
         })
-
     }
+
 
     @Throws(IOException::class)
     private fun createImageFile(): File {

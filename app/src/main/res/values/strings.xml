@@ -27,9 +27,12 @@
     <string name="wrong_qr_msg">앗! 여기가 아니에요!!\n\n다른 QR 코드를 찾아보세요</string>
 
     <string name="mission_scroll_msg">잘 찾아오셨습니다.\n다음 순서에 따라 미션을 수행하세요.\n\n1) 영상보기 → 미션확인\n2) 미션 가이드 → 방법 확인 후 미션 시작\n3) 인증샷 찍기 → 미션 종료 후 사진 촬영</string>
-    <string name="mission_view_video">영상 보기</string>
-    <string name="mission_guide">미션 가이드</string>
-    <string name="mission_sc_btn">인증샷 찍기</string>
+    <string name="mission_view_video">1. 영상 보기</string>
+    <string name="mission_guide">2. 미션 가이드</string>
+    <string name="mission_sc_btn">3. 인증샷 찍기</string>
+
+    <string name="mission_dialog_need_show_video">미션영상을 먼저 시청해주세요.</string>
+    <string name="mission_dialog_need_show_guide">미션가이드를 확인하세요.</string>
 
     <string name="network_error">서버와 통신 중 에러가 발생하였습니다.\n잠시뒤에 다시 시도해 보세요 : </string>
 

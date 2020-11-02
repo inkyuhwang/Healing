@@ -80,15 +80,21 @@ open class BaseActivity : AppCompatActivity(), Observer{
         toast?.show()
     }
 
-    override fun onDestroy() {
-        CommonObserver.instance.deleteObserver(this)
-        super.onDestroy()
-    }
-
     open fun showNetworkErrorDialog(msg:String, listener:View.OnClickListener?){
         val dialog = ConfirmDialog(this, msg, listener)
         dialog.setCancelable(false)
         dialog.show()
+    }
+
+    open fun showCommonDialog(msg:String, listener:View.OnClickListener?){
+        val dialog = ConfirmDialog(this, msg, listener)
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    override fun onDestroy() {
+        CommonObserver.instance.deleteObserver(this)
+        super.onDestroy()
     }
 
     override fun update(o: Observable?, data: Any?) {
